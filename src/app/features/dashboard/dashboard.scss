@@ -1,0 +1,87 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-card {
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+
+    .card-label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .card-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  &.balance .card-icon { background-color: #3f51b5; }
+  &.income .card-icon { background-color: #4caf50; }
+  &.expenses .card-icon { background-color: #f44336; }
+
+  &.balance .card-value { color: #3f51b5; }
+  &.income .card-value { color: #4caf50; }
+  &.expenses .card-value { color: #f44336; }
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  mat-card-content {
+    padding: 1rem;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    canvas {
+      max-height: 280px;
+    }
+  }
+}
