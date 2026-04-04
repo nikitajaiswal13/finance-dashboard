@@ -13,10 +13,20 @@
     <a mat-button routerLink="/insights" routerLinkActive="active-link">
       <mat-icon>insights</mat-icon> Insights
     </a>
-  </nav>
 
-  <mat-select [(ngModel)]="currentRole" (ngModelChange)="onRoleChange()" class="role-select">
-    <mat-option value="viewer">👁 Viewer</mat-option>
-    <mat-option value="admin">⚙️ Admin</mat-option>
-  </mat-select>
+    <button mat-icon-button (click)="toggleDarkMode()">
+      <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="roleMenu">
+      <mat-icon>manage_accounts</mat-icon>
+      {{ currentRole === 'admin' ? 'Admin' : 'Viewer' }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #roleMenu="matMenu">
+      <button mat-menu-item (click)="setRole('viewer')">👁 Viewer</button>
+      <button mat-menu-item (click)="setRole('admin')">⚙️ Admin</button>
+    </mat-menu>
+  </nav>
 </mat-toolbar>

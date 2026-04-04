@@ -36,3 +36,94 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+
+  .mat-toolbar {
+    background-color: #1f1f1f !important;
+    color: white !important;
+
+    a, button, span, mat-icon {
+      color: white !important;
+    }
+  }
+
+  .mat-mdc-card {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+  }
+
+  .main-content {
+    background-color: #121212 !important;
+  }
+
+  .mdc-data-table__row {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+  }
+
+  .mdc-data-table__header-row {
+    background-color: #2c2c2c !important;
+  }
+
+  .mdc-data-table__header-cell {
+    color: #ffffff !important;
+  }
+
+  .mdc-data-table__cell {
+    color: #ffffff !important;
+  }
+
+  .expense-item {
+    background: #2c2c2c !important;
+  }
+
+  .category-badge {
+    background: #2c2c2c !important;
+    color: #90caf9 !important;
+  }
+
+  .insight-card .card-value {
+    color: #ffffff !important;
+  }
+
+  .insight-card .card-label {
+    color: #aaaaaa !important;
+  }
+
+  .insight-card .card-sub {
+    color: #888888 !important;
+  }
+
+  .page-header h2 {
+    color: #ffffff !important;
+  }
+
+  .obs-text p, .obs-text strong {
+    color: #ffffff !important;
+  }
+
+  .mat-mdc-form-field {
+  .mdc-outlined-text-field__outline {
+    border-color: #666666 !important;
+  }
+
+  .mdc-floating-label {
+    color: #aaaaaa !important;
+  }
+
+  .mat-mdc-input-element {
+    color: #ffffff !important;
+  }
+
+  .mat-mdc-select-value {
+    color: #ffffff !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: #aaaaaa !important;
+  }
+}
+}

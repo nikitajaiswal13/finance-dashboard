@@ -1,15 +1,19 @@
 .brand {
   font-size: 1.2rem;
   font-weight: 700;
-  margin-right: 2rem;
   letter-spacing: 0.5px;
+}
+
+.spacer {
+  flex: 1;
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 
-  a {
+  a, button {
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -20,13 +24,4 @@
       opacity: 1;
     }
   }
-}
-
-.spacer {
-  flex: 1;
-}
-
-.role-select {
-  width: 130px;
-  color: white;
 }

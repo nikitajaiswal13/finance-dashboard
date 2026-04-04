@@ -1,1 +1,101 @@
-<p>insights works!</p>
+<div class="insights-container">
+
+  <div class="page-header">
+    <h2>Insights</h2>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="cards-row">
+
+    <mat-card class="insight-card">
+      <mat-card-content>
+        <div class="card-icon purple">
+          <mat-icon>category</mat-icon>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Highest Spending Category</span>
+          <span class="card-value">{{ highestSpendingCategory }}</span>
+          <span class="card-sub">{{ highestSpendingAmount | currency:'INR':'symbol':'1.0-0' }} total</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="insight-card">
+      <mat-card-content>
+        <div class="card-icon red">
+          <mat-icon>calendar_month</mat-icon>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Most Expensive Month</span>
+          <span class="card-value">{{ mostExpensiveMonth }}</span>
+          <span class="card-sub">{{ mostExpensiveMonthAmount | currency:'INR':'symbol':'1.0-0' }} spent</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="insight-card">
+      <mat-card-content>
+        <div class="card-icon green">
+          <mat-icon>savings</mat-icon>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Savings Rate</span>
+          <span class="card-value">{{ savingsRate }}%</span>
+          <span class="card-sub">of total income saved</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="insight-card">
+      <mat-card-content>
+        <div class="card-icon blue">
+          <mat-icon>bar_chart</mat-icon>
+        </div>
+        <div class="card-info">
+          <span class="card-label">Avg Monthly Expense</span>
+          <span class="card-value">{{ avgMonthlyExpense | currency:'INR':'symbol':'1.0-0' }}</span>
+          <span class="card-sub">per month average</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <!-- Top 5 Expenses -->
+  <mat-card class="top-expenses-card">
+    <mat-card-header>
+      <mat-card-title>Top 5 Largest Expenses</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="expense-list">
+        <div *ngFor="let t of topTransactions; let i = index" class="expense-item">
+          <div class="expense-rank">#{{ i + 1 }}</div>
+          <div class="expense-details">
+            <span class="expense-desc">{{ t.description }}</span>
+            <span class="expense-meta">{{ t.category }} · {{ t.date | date:'dd MMM yyyy' }}</span>
+          </div>
+          <div class="expense-amount">
+            -{{ t.amount | currency:'INR':'symbol':'1.0-0' }}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Observation -->
+  <mat-card class="observation-card">
+    <mat-card-content>
+      <mat-icon class="obs-icon">lightbulb</mat-icon>
+      <div class="obs-text">
+        <strong>Key Observation</strong>
+        <p>
+          Your biggest expense category is <strong>{{ highestSpendingCategory }}</strong>,
+          accounting for {{ highestSpendingAmount | currency:'INR':'symbol':'1.0-0' }} of your total spending.
+          You save <strong>{{ savingsRate }}%</strong> of your income each month on average.
+          {{ savingsRate >= 30 ? '🎉 Great job! You are saving well above the recommended 20%.' : '⚠️ Try to increase your savings rate to at least 20% of your income.' }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
