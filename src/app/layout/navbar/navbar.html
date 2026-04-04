@@ -1,1 +1,22 @@
-<p>navbar works!</p>
+<mat-toolbar color="primary">
+  <span class="brand">💰 FinTrack</span>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/dashboard" routerLinkActive="active-link">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+    <a mat-button routerLink="/transactions" routerLinkActive="active-link">
+      <mat-icon>receipt_long</mat-icon> Transactions
+    </a>
+    <a mat-button routerLink="/insights" routerLinkActive="active-link">
+      <mat-icon>insights</mat-icon> Insights
+    </a>
+  </nav>
+
+  <mat-select [(ngModel)]="currentRole" (ngModelChange)="onRoleChange()" class="role-select">
+    <mat-option value="viewer">👁 Viewer</mat-option>
+    <mat-option value="admin">⚙️ Admin</mat-option>
+  </mat-select>
+</mat-toolbar>

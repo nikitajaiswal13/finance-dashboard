@@ -1,0 +1,32 @@
+.brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-right: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+
+    &:hover, &.active-link {
+      opacity: 1;
+    }
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+.role-select {
+  width: 130px;
+  color: white;
+}
