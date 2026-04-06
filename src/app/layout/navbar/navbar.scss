@@ -64,9 +64,27 @@ mat-icon {
   vertical-align: middle;
 }
 
-.active{
-  font-weight: bold;
-  color: #ff4081; /* Accent color */
+.mode-indicator {
+  margin-left: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Viewer mode */
+.mode-indicator.viewer {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+/* Admin mode */
+.mode-indicator.admin {
+  background: #ede7f6;
+  color: #6a1b9a;
 }
 
 // Responsive  
