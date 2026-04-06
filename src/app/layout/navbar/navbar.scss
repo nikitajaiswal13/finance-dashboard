@@ -64,6 +64,11 @@ mat-icon {
   vertical-align: middle;
 }
 
+.active{
+  font-weight: bold;
+  color: #ff4081; /* Accent color */
+}
+
 // Responsive  
 @media (max-width: 768px) {
   .desktop-nav {

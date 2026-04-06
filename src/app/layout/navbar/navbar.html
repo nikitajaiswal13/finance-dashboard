@@ -46,8 +46,12 @@
       <a mat-menu-item routerLink="/insights">
         <mat-icon>insights</mat-icon> Insights
       </a>
-      <button mat-menu-item (click)="setRole('viewer')">👁 Viewer</button>
-      <button mat-menu-item (click)="setRole('admin')">⚙️ Admin</button>
+      <button mat-menu-item (click)="setRole('viewer')" [class.active-role]="currentRole === 'viewer'">
+        👁 Viewer
+      </button>
+      <button mat-menu-item (click)="setRole('admin')" [class.active-role]="currentRole === 'admin'">
+        ⚙️ Admin
+      </button>
     </mat-menu>
   </div>
 </mat-toolbar>
