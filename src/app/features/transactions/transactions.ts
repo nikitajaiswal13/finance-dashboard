@@ -109,19 +109,6 @@ export class Transactions implements OnInit {
     this.applyFilters();
   }
 
-  // addTransaction() {
-  //   const t: Transaction = {
-  //     id: Date.now(),
-  //     date: this.newTransaction.date || new Date().toISOString().split('T')[0],
-  //     description: this.newTransaction.description || '',
-  //     category: this.newTransaction.category as TransactionCategory,
-  //     type: this.newTransaction.type as TransactionType,
-  //     amount: Number(this.newTransaction.amount)
-  //   };
-  //   this.transactionService.addTransaction(t);
-  //   this.showAddForm = false;
-  //   this.newTransaction = {};
-  // }
 
   addTransaction() {
   if (Number(this.newTransaction.amount) <= 0) {
