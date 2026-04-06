@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RoleService, Role } from '../../core/services/role.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',

@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
   <a mat-button routerLink="/dashboard" class="brand">💰 FinTrack</a>
-  <span 
+
+<span 
   class="mode-indicator"
-  [ngClass]="currentRole === 'admin' ? 'admin' : 'viewer'"
+  [class.admin]="currentRole === 'admin'"
+  [class.viewer]="currentRole === 'viewer'"
 >
   {{ currentRole === 'admin' ? '⚙ Admin Mode' : '👁 Viewer Mode' }}
 </span>
