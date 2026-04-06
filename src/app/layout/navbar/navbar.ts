@@ -22,6 +22,7 @@ import { RoleService, Role } from '../../core/services/role.service';
 export class Navbar {
   currentRole: Role = 'viewer';
   isDarkMode = false;
+  isMobileMenuOpen = false;
 
   constructor(private roleService: RoleService) {}
 
@@ -33,5 +34,9 @@ export class Navbar {
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-theme', this.isDarkMode);
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }

@@ -10,6 +10,12 @@
     </button>
   </div>
 
+    <!-- Read Only Banner -->
+  <div class="readonly-banner" *ngIf="currentRole === 'viewer'">
+    <mat-icon>visibility</mat-icon>
+    <span>You are in <strong>Viewer mode</strong> — read only access. Switch to Admin to add transactions.</span>
+  </div>
+
   <!-- Add Transaction Form (Admin Only) -->
   <mat-card *ngIf="showAddForm && currentRole === 'admin'" class="add-form-card">
     <mat-card-header>
@@ -48,9 +54,12 @@
         </mat-form-field>
       </div>
 
-      <button mat-raised-button color="primary" (click)="addTransaction()">
-        Save Transaction
-      </button>
+      <button mat-raised-button color="primary" 
+  (click)="addTransaction()"
+  [disabled]="!newTransaction.description || !newTransaction.amount || !newTransaction.type || !newTransaction.category || !newTransaction.date">
+  Save Transaction
+</button>
+
     </mat-card-content>
   </mat-card>
 

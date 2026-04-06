@@ -24,16 +24,21 @@ export class Insights implements OnInit {
 
   topTransactions: Transaction[] = [];
 
+  monthOverMonthChange = 0;
+  monthOverMonthLabel = '';
+  lastMonthName = '';
+  secondLastMonthName = '';
+
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit() {
-    const transactions = this.transactionService.getTransactions();
-    this.calculateInsights(transactions);
+    this.transactionService.transactions$.subscribe(transactions => {
+      this.calculateInsights(transactions);
+    });
   }
 
   calculateInsights(transactions: Transaction[]) {
     const expenses = transactions.filter(t => t.type === 'expense');
-    const incomes = transactions.filter(t => t.type === 'income');
 
     // Highest spending category
     const categoryMap: Record<string, number> = {};
@@ -49,23 +54,37 @@ export class Insights implements OnInit {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June'];
     expenses.forEach(t => {
       const month = monthNames[new Date(t.date).getMonth()];
-      monthMap[month] = (monthMap[month] || 0) + t.amount;
+      if (month) monthMap[month] = (monthMap[month] || 0) + t.amount;
     });
     const topMonth = Object.entries(monthMap).sort((a, b) => b[1] - a[1])[0];
     this.mostExpensiveMonth = topMonth[0];
     this.mostExpensiveMonthAmount = topMonth[1];
+
+    // Month over month comparison (last 2 months with data)
+    const monthsWithData = Object.entries(monthMap)
+      .sort((a, b) => monthNames.indexOf(a[0]) - monthNames.indexOf(b[0]));
+
+    if (monthsWithData.length >= 2) {
+      const last = monthsWithData[monthsWithData.length - 1];
+      const secondLast = monthsWithData[monthsWithData.length - 2];
+      this.lastMonthName = last[0];
+      this.secondLastMonthName = secondLast[0];
+      const diff = last[1] - secondLast[1];
+      this.monthOverMonthChange = Math.round(Math.abs(diff / secondLast[1]) * 100);
+      this.monthOverMonthLabel = diff > 0 ? 'increased' : 'decreased';
+    }
 
     // Savings rate
     const totalIncome = this.transactionService.getTotalIncome();
     const totalExpenses = this.transactionService.getTotalExpenses();
     this.savingsRate = Math.round(((totalIncome - totalExpenses) / totalIncome) * 100);
 
-    // Averages (over 6 months)
+    // Averages
     this.avgMonthlyExpense = Math.round(totalExpenses / 6);
     this.avgMonthlyIncome = Math.round(totalIncome / 6);
 
     // Top 5 largest expenses
-    this.topTransactions = expenses
+    this.topTransactions = [...expenses]
       .sort((a, b) => b.amount - a.amount)
       .slice(0, 5);
   }

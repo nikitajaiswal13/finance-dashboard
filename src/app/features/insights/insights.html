@@ -83,19 +83,25 @@
   </mat-card>
 
   <!-- Observation -->
-  <mat-card class="observation-card">
-    <mat-card-content>
-      <mat-icon class="obs-icon">lightbulb</mat-icon>
-      <div class="obs-text">
-        <strong>Key Observation</strong>
-        <p>
-          Your biggest expense category is <strong>{{ highestSpendingCategory }}</strong>,
-          accounting for {{ highestSpendingAmount | currency:'INR':'symbol':'1.0-0' }} of your total spending.
-          You save <strong>{{ savingsRate }}%</strong> of your income each month on average.
-          {{ savingsRate >= 30 ? '🎉 Great job! You are saving well above the recommended 20%.' : '⚠️ Try to increase your savings rate to at least 20% of your income.' }}
-        </p>
-      </div>
-    </mat-card-content>
-  </mat-card>
+<mat-card class="observation-card">
+  <mat-card-content>
+    <mat-icon class="obs-icon">lightbulb</mat-icon>
+    <div class="obs-text">
+      <strong>Key Observations</strong>
+      <p>
+        Your biggest expense category is <strong>{{ highestSpendingCategory }}</strong>,
+        accounting for {{ highestSpendingAmount | currency:'INR':'symbol':'1.0-0' }} of your total spending.
+      </p>
+      <p *ngIf="monthOverMonthChange > 0">
+        📊 Spending <strong>{{ monthOverMonthLabel }} by {{ monthOverMonthChange }}%</strong>
+        from {{ secondLastMonthName }} to {{ lastMonthName }}.
+      </p>
+      <p>
+        You save <strong>{{ savingsRate }}%</strong> of your income on average.
+        {{ savingsRate >= 30 ? '🎉 Great job! Well above the recommended 20%.' : '⚠️ Try to increase savings to at least 20% of income.' }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
 
 </div>

@@ -12,7 +12,7 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatCardModule, MatIconModule, BaseChartDirective , CurrencyPipe],
+  imports: [MatCardModule, MatIconModule, BaseChartDirective, CurrencyPipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
@@ -38,13 +38,20 @@ export class Dashboard implements OnInit {
   constructor(private transactionService: TransactionService) {}
 
   ngOnInit() {
-    this.totalBalance = this.transactionService.getTotalBalance();
-    this.totalIncome = this.transactionService.getTotalIncome();
-    this.totalExpenses = this.transactionService.getTotalExpenses();
+    this.transactionService.transactions$.subscribe(transactions => {
+      this.totalIncome = transactions
+        .filter(t => t.type === 'income')
+        .reduce((sum, t) => sum + t.amount, 0);
 
-    const transactions = this.transactionService.getTransactions();
-    this.buildLineChart(transactions);
-    this.buildDoughnutChart(transactions);
+      this.totalExpenses = transactions
+        .filter(t => t.type === 'expense')
+        .reduce((sum, t) => sum + t.amount, 0);
+
+      this.totalBalance = this.totalIncome - this.totalExpenses;
+
+      this.buildLineChart(transactions);
+      this.buildDoughnutChart(transactions);
+    });
   }
 
   buildLineChart(transactions: Transaction[]) {

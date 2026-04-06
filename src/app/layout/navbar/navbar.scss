@@ -1,27 +1,84 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+/* Brand / Logo */
 .brand {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.5px;
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
 }
 
 .spacer {
   flex: 1;
 }
 
-.nav-links {
+.desktop-nav {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
-  a, button {
+  a,
+  button {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.4rem;
     opacity: 0.85;
-    transition: opacity 0.2s;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 
-    &:hover, &.active-link {
+    &:hover,
+    &.active-link {
       opacity: 1;
     }
+  }
+}
+
+/* Mobile Nav (Hamburger button) */
+.mobile-nav {
+  display: none;
+  align-items: center;
+
+  button {
+    padding: 0.5rem;
+    min-width: auto;
+  }
+}
+
+
+mat-toolbar {
+  overflow: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+mat-icon {
+  vertical-align: middle;
+}
+
+// Responsive  
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  mat-toolbar {
+    padding: 0 0.5rem;
   }
 }

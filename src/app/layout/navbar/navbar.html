@@ -1,9 +1,10 @@
 <mat-toolbar color="primary">
-  <span class="brand">💰 FinTrack</span>
+  <a mat-button routerLink="/dashboard" class="brand">💰 FinTrack</a>
 
   <span class="spacer"></span>
 
-  <nav class="nav-links">
+  <!-- Desktop Nav -->
+  <nav class="nav-links desktop-nav">
     <a mat-button routerLink="/dashboard" routerLinkActive="active-link">
       <mat-icon>dashboard</mat-icon> Dashboard
     </a>
@@ -13,20 +14,40 @@
     <a mat-button routerLink="/insights" routerLinkActive="active-link">
       <mat-icon>insights</mat-icon> Insights
     </a>
-
     <button mat-icon-button (click)="toggleDarkMode()">
       <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
-
     <button mat-button [matMenuTriggerFor]="roleMenu">
       <mat-icon>manage_accounts</mat-icon>
       {{ currentRole === 'admin' ? 'Admin' : 'Viewer' }}
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
-
     <mat-menu #roleMenu="matMenu">
       <button mat-menu-item (click)="setRole('viewer')">👁 Viewer</button>
       <button mat-menu-item (click)="setRole('admin')">⚙️ Admin</button>
     </mat-menu>
   </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <button mat-icon-button (click)="toggleDarkMode()">
+      <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #mobileMenu="matMenu">
+      <a mat-menu-item routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </a>
+      <a mat-menu-item routerLink="/transactions">
+        <mat-icon>receipt_long</mat-icon> Transactions
+      </a>
+      <a mat-menu-item routerLink="/insights">
+        <mat-icon>insights</mat-icon> Insights
+      </a>
+      <button mat-menu-item (click)="setRole('viewer')">👁 Viewer</button>
+      <button mat-menu-item (click)="setRole('admin')">⚙️ Admin</button>
+    </mat-menu>
+  </div>
 </mat-toolbar>
